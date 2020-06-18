@@ -1,14 +1,14 @@
-const tmi = require('tmi.js');
+﻿const tmi = require('tmi.js');
 const translate = require('@k3rn31p4nic/google-translate-api');
 
 // Define configuration options
 const opts = {
   identity: {
-    username: 'sunnykidbot',
-    password: 'oauth:5itqrqzpdi0aoykhfyjlsrxvicambg'
+    username: '[Bot Account Username]',
+    password: '[OAUTH Code from https://twitchapps.com/tmi/]'
   },
   channels: [
-    'sunnykid'
+    '[Your Account Here]'
   ]
 };
 
