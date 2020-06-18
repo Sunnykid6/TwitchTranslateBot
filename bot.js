@@ -1,6 +1,5 @@
 const tmi = require('tmi.js');
 const translate = require('@k3rn31p4nic/google-translate-api');
-const twitchEmoji = require('twitch-emoji');
 
 // Define configuration options
 const opts = {
