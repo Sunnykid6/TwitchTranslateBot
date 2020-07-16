@@ -3,6 +3,7 @@ A twitch bot that will translate text from users into any of the supported langu
 - Allows for any supported regular twitch emotes [DISCLAIMER] The bot will not have subs unless you sub so some emotes will just be text.
 - Uses a Google Translate API so messages won't be super accurate. Hopefully just enough for you to understand the gist of your international audience
 - Doesn't support FrankzerZ or BTTV emotes right now. Those emotes will get translated.
+- Any other questions: Send me an email at sun.victor99@gmail.com
 
 
 # Installations
