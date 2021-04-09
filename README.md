@@ -8,7 +8,7 @@ A twitch bot that will translate text from users into any of the supported langu
 
 # Installations
 - Create a new twitch account to act as your helper bot user. Take note of this Username
-- Follow onlythe directions to install locally https://dev.twitch.tv/docs/irc (node and tmi package)
+- Follow only the directions to install locally https://dev.twitch.tv/docs/irc (node and tmi package)
 - Install https://openbase.io/js/@k3rn31p4nic/google-translate-api/documentation from your command line. Instructions on the page.
 - Download this repository.
 - Take note of the username that you want to bot to go to. [Make sure its your own because the bot will go to whatever channel you put]
@@ -28,6 +28,7 @@ A twitch bot that will translate text from users into any of the supported langu
 - It should tell you **Connected to irc-ws.chat.twitch.tv:80** That means its successful. The bot should now be ready to go. You have to run this everytime you want the bot to be active.
 
 # Commands
-- !languages | shows you the code for common langauges used
-- !example | an example on how to use the translate command
-- !translate | how you actually translate the text that you want.
+- !languages | Shows you the code for common langauges used
+- !example | An example on how to use the translate command
+- !translate | How you actually translate the text that you want
+- !song | Gets the song name and artist from Spotify (Maybe add functionality for youtube songs later)
