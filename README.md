@@ -8,7 +8,7 @@ A twitch bot that will translate text from users into any of the supported langu
 
 # Installations
 - Create a new twitch account to act as your helper bot user. Take note of this Username
-- Follow onlythe directions to install locally https://dev.twitch.tv/docs/irc (node and tmi package)
+- Follow only the directions to install locally https://dev.twitch.tv/docs/irc (node and tmi package)
 - Install https://openbase.io/js/@k3rn31p4nic/google-translate-api/documentation from your command line. Instructions on the page.
 - Download this repository.
 - Take note of the username that you want to bot to go to. [Make sure its your own because the bot will go to whatever channel you put]
