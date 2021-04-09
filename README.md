@@ -28,6 +28,7 @@ A twitch bot that will translate text from users into any of the supported langu
 - It should tell you **Connected to irc-ws.chat.twitch.tv:80** That means its successful. The bot should now be ready to go. You have to run this everytime you want the bot to be active.
 
 # Commands
-- !languages | shows you the code for common langauges used
-- !example | an example on how to use the translate command
-- !translate | how you actually translate the text that you want.
+- !languages | Shows you the code for common langauges used
+- !example | An example on how to use the translate command
+- !translate | How you actually translate the text that you want
+- !song | Gets the song name and artist from Spotify (Maybe add functionality for youtube songs later)
