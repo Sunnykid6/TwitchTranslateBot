@@ -1,7 +1,14 @@
 import win32gui
 import win32api
+import codecs
 
 windows = []
+mywindows = []  
+def enumerationCallaback(hwnd, results):
+    text = win32gui.GetWindowText(hwnd)
+    if text.find("Mozilla Firefox") >= 0:
+        results.append((hwnd, text))
+
 def getinfo():
 	original = win32gui.FindWindow("SpotifyMainWindow", None)
 	iterations = win32gui.GetWindowText(original)
@@ -19,8 +26,15 @@ def getinfo():
 
 	# If Spotify isn't running the list will be empty
 	if len(windows) == 0:
-	    print("Spotify is closed")
-	    return
+		outputfile = open('SpotifyInfo.txt', "w")
+		outputfile.write("Spotify is closed")
+		outputfile.close()
+		win32gui.EnumWindows(enumerationCallaback, mywindows)
+		outputfiles = codecs.open('youtubeInfo.txt', "w", "utf-8")
+		for win, text in mywindows:
+			outputfiles.write(text.replace('- YouTube — Mozilla Firefox', ''))
+		outputfiles.close()
+		return 
 
 	if windows[0].startswith('Spotify'):
 	    print("Spotify is paused")

@@ -168,6 +168,12 @@ function getSongName(){
 	var cp = require('child_process');
 	const pythonProcess = cp.spawnSync('python', ["./getSong.py"]);
 	var content = fs.readFileSync('SpotifyInfo.txt', 'utf8');
+	if(content == "Spotify is closed"){
+		content = fs.readFileSync('youtubeInfo.txt', 'utf8');
+		if(content == ''){
+			content = "No songs are currently playing";
+		}
+	}
 	return content;
 }
 
