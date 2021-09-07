@@ -16,7 +16,7 @@ const opts = {
 
 // Create a client with our options
 const client = new tmi.client(opts);
-
+var twitchplaystate = false;
 // Register our event handlers (defined below)
 client.on('message', onMessageHandler);
 client.on('connected', onConnectedHandler);
@@ -27,33 +27,105 @@ client.connect();
 // Called every time a message comes in
 function onMessageHandler (target, context, msg, self) {	
 	if (self) { return; } // Ignore messages from the bot
-	
+
 	if(!isEmpty(context.emotes)){
 		var emotesArray = Object.entries(context.emotes);
-		console.log(emotesArray);
 	}
-	console.log(JSON.stringify(context));
+
 	var str = msg.split(" ");
+	//if you typed in !atp will go here
+	//for different cases
+	if(twitchplaystate){
+		if(str[0].toLowerCase() == '!atp' && context.username == 'sunnykid'){
+				twitchplaystate = false;
+				console.log('Deactivated Twitch Plays')
+		}
+		else{
+			switch(str[0].toLowerCase()){
+				case 'up':
+					if(str.length >= 2 && isNumeric(str[1])){
+						//console.log(parseInt(str[1]));
+						keyPress('up', parseInt(str[1]));
+					}
+					else{
+						keyPress('up', 1);
+					}
+					break;
+				case 'down':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('down', parseInt(str[1]));
+					}
+					else{
+						keyPress('down', 1);
+					}
+					break;
+				case 'left':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('left', parseInt(str[1]));
+					}
+					else{
+						keyPress('left', 1);
+					}
+					break;
+				case 'right':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('right', parseInt(str[1]));
+					}
+					else{
+						keyPress('right', 1);
+					}
+					break;
+				case 'a':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('a', parseInt(str[1]));
+					}
+					else{
+						keyPress('a', 1);
+					}
+					break;
+				case 'b':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('b', parseInt(str[1]));
+					}
+					else{
+						keyPress('b', 1);
+					}
+					break;
+				case 'select':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('select', parseInt(str[1]));
+					}
+					else{
+						keyPress('select', 1);
+					}
+					break;
+				case 'start':
+					if(str.length >= 2 && isNumeric(str[1])){
+						keyPress('start', parseInt(str[1]));
+					}
+					else{
+						keyPress('start', 1);
+					}
+					break;				
+			}
+		}
+	}
   // If the command is known, let's execute it
-	if (str[0].toLowerCase() == '!translate'){
+	else if (str[0].toLowerCase() == '!translate'){
 		if(!isEmpty(context.emotes)){
 			var sentence = textTranslateHelper(str, 0);
 			var translateTo = str[1];
 			sentence = replaceEmotes(emotesArray, sentence).split(" ");
 			sentence = textTranslateHelper(sentence, 2);
-			console.log(sentence);
 			var matches = sentence.match(/\<(.*?)\>/g);
 			for(var i = 0; i < matches.length; i++){
 				matches[i] = matches[i].replace(/[\<\>']+/g,'');
 			}
-			console.log(matches);
 			translate(sentence, {to:translateTo}).then(res => {
 				var result = res.text;
-				console.log(result);
 				for(var i = 0; i < matches.length; i++){
 					result = result.replace(/\<(.*?)\>/ , "  " + matches[i] + "  ");
 				}
-				console.log(result);
 				client.say(target, `${result}`);
 			});
 		}
@@ -62,7 +134,6 @@ function onMessageHandler (target, context, msg, self) {
 			var translateTo = str[1];
 			translate(sentence, {to:translateTo}).then(res => {
 				var result = res.text;
-				console.log(result);
 				client.say(target, `${result}`);
 			});
 		}
@@ -84,7 +155,14 @@ function onMessageHandler (target, context, msg, self) {
 		client.say(target, `${string1}`);
 
 	}
-	
+	else if(str[0].toLowerCase() == '!atp' && context.username == 'sunnykid'){
+		twitchplaystate = true;
+		console.log("Activated Twitch Plays");
+	}
+}
+
+function isNumeric(val) {
+    return /^-?\d+$/.test(val);
 }
 
 function isEmpty(obj) {
@@ -175,6 +253,53 @@ function getSongName(){
 		}
 	}
 	return content;
+}
+//probably more efficient way but this is to call the python code for key presses
+function keyPress(input, bcount){
+	const {childProcess} = require('child_process');
+	switch(input){
+		case 'up':
+			let timestopress = bcount
+			const keyup = spawn("python",
+			    ["-c", `import keyUp; keyUp.press(${timestopress})`])
+			break;
+		case 'down':
+			let timestopress1 = bcount
+			const keydown = spawn("python",
+			    ["-c", `import keyDown; keyDown.press(${timestopress1})`])
+			break;			
+		case 'left':
+			let timestopress2 = bcount
+			const keyleft = spawn("python",
+			    ["-c", `import keyLeft; keyLeft.press(${timestopress2})`])
+			break;
+		case 'right':
+			let timestopress3 = bcount
+			const keyright = spawn("python",
+			    ["-c", `import keyRight; keyRight.press(${timestopress3})`])
+			break;
+		case 'a':
+			let timestopress4 = bcount
+			const keya = spawn("python",
+			    ["-c", `import keyA; keyA.press(${timestopress4})`])
+			break;
+		case 'b':
+			let timestopress5 = bcount
+			const keyb = spawn("python",
+			    ["-c", `import keyB; keyB.press(${timestopress5})`])
+			break;			
+		case 'select':
+			let timestopress6 = bcount
+			const keyselect = spawn("python",
+			    ["-c", `import keySelect; keySelect.press(${timestopress6})`])
+			break;
+		case 'start':
+			let timestopress7 = bcount
+			const keystart = spawn("python",
+			    ["-c", `import keyStart; keyStart.press(${timestopress7})`])
+			break;
+	}
+
 }
 
 // Called every time the bot connects to Twitch chat
