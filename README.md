@@ -34,3 +34,4 @@ A twitch bot that will translate text from users into any of the supported langu
 - !example | An example on how to use the translate command
 - !translate | How you actually translate the text that you want
 - !song | Gets the song name and artist from Spotify (Maybe add functionality for youtube songs later)
+- !atp | To activate and deactivate twitch plays mode so that it streamlines commands and disables the other comamnds
